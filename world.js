@@ -1,11 +1,13 @@
 // world.js - Create and update the 3D world (terrain, objects, day-night, weather)
 
-import * as THREE from 'three';
-
+// Defer acquiring Three.js until runtime to avoid load-order issues
+let THREE;
 let scene, clock;
 
 export function initWorld(sceneRef){
   scene = sceneRef;
+  THREE = window.THREE;
+  if(!THREE) throw new Error('THREE not available on window in initWorld');
   clock = new THREE.Clock();
 
   // Fog for atmosphere
@@ -67,6 +69,8 @@ function addItems(){
 // Simple day-night cycle controller
 let sunLight;
 export function initLights(renderer){
+  THREE = window.THREE || THREE;
+  if(!THREE) throw new Error('THREE not available in initLights');
   // Ambient
   const amb = new THREE.AmbientLight(0xffffff, 0.3);
   scene.add(amb);
