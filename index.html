@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survival Demo (Three.js)</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="hud">
+      <div id="stats">
+        <div class="stat">Health: <span id="health">100</span></div>
+        <div class="stat">Hunger: <span id="hunger">100</span></div>
+        <div class="stat">Stamina: <span id="stamina">100</span></div>
+      </div>
+      <div id="inventory">Inventory: <span id="invList">(empty)</span></div>
+      <div id="message"></div>
+    </div>
+
+    <button id="startBtn">Click to Start (Pointer Lock)</button>
+
+    <!-- Three.js from CDN -->
+    <script type="module">
+      // Re-exporting Three.js modules for our scripts
+      import * as THREE from 'https://unpkg.com/three@0.159.0/build/three.module.js';
+      import { PointerLockControls } from 'https://unpkg.com/three@0.159.0/examples/jsm/controls/PointerLockControls.js';
+      window.THREE = THREE;
+      window.PointerLockControls = PointerLockControls;
+    </script>
+
+    <script type="module" src="game.js"></script>
+  </body>
+</html>
